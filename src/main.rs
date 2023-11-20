@@ -18,10 +18,10 @@ fn main() {
     let mut detection = false;
 
     loop {
-        if sensor.is_low() && detection == true {
+        if sensor.is_low() && detection {
             println!("No detection!");
             detection = false;
-        } else if sensor.is_high() && detection == false {
+        } else if sensor.is_high() && !detection {
             println!("Movement detected");
             detection = true;
         }
