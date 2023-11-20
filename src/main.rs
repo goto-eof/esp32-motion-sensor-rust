@@ -1,3 +1,6 @@
+use std::thread;
+use std::time::Duration;
+
 use esp_idf_sys as _;
 
 use esp_idf_hal::gpio::*;
@@ -10,8 +13,7 @@ fn main() {
 
     let dp = Peripherals::take().unwrap();
 
-    let sensor = PinDriver::input(dp.pins.gpio3).unwrap();
-    // sensor.set_pull(Pull::Up).unwrap();
+    let sensor = PinDriver::input(dp.pins.gpio4).unwrap();
 
     let mut detection = false;
 
@@ -23,5 +25,6 @@ fn main() {
             println!("Movement detected");
             detection = true;
         }
+        thread::sleep(Duration::from_millis(10));
     }
 }
